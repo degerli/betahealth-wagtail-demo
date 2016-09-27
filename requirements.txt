@@ -3,6 +3,6 @@ wagtail>=1.6,<1.7
 psycopg2>=2.6.2
 
 # Dependencies for Heroku deployment
-dj-database-url==0.3.0
-whitenoise==2.0.4
-uwsgi==2.0.11.2
+dj-database-url==0.4.1
+whitenoise==3.2.2
+uwsgi==2.0.13.1

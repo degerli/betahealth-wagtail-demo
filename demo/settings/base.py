@@ -143,6 +143,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'f0a72a6174d5245eb0d9cf78ae39fcf0')
+
 
 # Wagtail settings
 

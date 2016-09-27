@@ -1,3 +1,8 @@
 Django>=1.10,<1.11
 wagtail>=1.6,<1.7
 psycopg2>=2.6.2
+
+# Dependencies for Heroku deployment
+dj-database-url==0.3.0
+whitenoise==2.0.4
+uwsgi==2.0.11.2

@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:9.5.4
+    restart: always
+    environment:
+      POSTGRES_USER: wagtail
+      POSTGRES_PASSWORD: wagtail
+      POSTGRES_DB: wagtail
+
+  wagtail:
+    build: .
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - "8000:8000"
+    restart: always
+    volumes:
+      - ./demo/:/usr/src/app

@@ -5,18 +5,13 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
-
+from wagtail.wagtailembeds.blocks import EmbedBlock
 
 class SimplePage(Page):
-    # title = models.CharField(max_length=255)
     intro = models.CharField(max_length=255)
-    date = models.DateField("Post date")
 
     body = StreamField([
-        ('callout', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('paragraph', blocks.RichTextBlock()),
-        ])),
+        ('callout', blocks.RichTextBlock()),
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
 
@@ -25,19 +20,14 @@ class SimplePage(Page):
             ('subsections', blocks.ListBlock(
                 blocks.StructBlock([
                     ('title', blocks.CharBlock()),
-                    ('image', ImageChooserBlock()),
-                    ('body', blocks.RichTextBlock())
+                    ('content', blocks.StreamBlock([
+                        ('image', ImageChooserBlock()),
+                        ('text', blocks.RichTextBlock()),
+                        ('embed', EmbedBlock()),
+                    ]))
                 ])
             ))
-        ])),
-
-        # ('section', blocks.ListBlock(
-        #     blocks.StructBlock([
-        #         ('title', blocks.CharBlock()),
-        #         ('image', ImageChooserBlock()),
-        #         ('body', blocks.RichTextBlock())
-        #     ], label="Subsection")
-        # ))
+        ]))
     ])
 
     aside = StreamField([
@@ -46,11 +36,9 @@ class SimplePage(Page):
     ])
 
     content_panels = Page.content_panels + [
-        # FieldPanel('title'),
         FieldPanel('intro'),
-        FieldPanel('date'),
         StreamFieldPanel('body'),
         StreamFieldPanel('aside')
     ]
 
-    api_fields = ['title', 'intro', 'date', 'body', 'aside']
+    api_fields = ['title', 'intro', 'body', 'aside']

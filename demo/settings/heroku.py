@@ -4,7 +4,7 @@ import dj_database_url
 from .base import *
 
 
-DEBUG = False
+DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
 
 DATABASES['default'] = dj_database_url.config()
 

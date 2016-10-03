@@ -1,11 +1,32 @@
-FROM python:3.5.2
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get install -yq \
+        postgresql-client \
+        build-essential \
+        cmake \
+        git \
+        wget \
+        unzip \
+        pkg-config \
+        libswscale-dev \
+        python \
+        python-dev \
+        python-pip \
+        python-numpy \
+        python-opencv \
+        libtbb2 \
+        libtbb-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
+        libjasper-dev \
+        libavformat-dev \
+        libpq-dev \
+    && apt-get -y clean all \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
-
-RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list && \
-    apt-get update && apt-get install -yq \
-        postgresql-client
 
 ADD requirements.txt .
 RUN pip install -r requirements.txt

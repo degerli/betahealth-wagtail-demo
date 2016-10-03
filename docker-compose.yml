@@ -20,3 +20,8 @@ services:
     restart: always
     volumes:
       - .:/usr/src/app
+    environment:
+      DB_USER: wagtail
+      DB_PASSWORD: wagtail
+      DB_NAME: wagtail
+      DB_HOST: postgres

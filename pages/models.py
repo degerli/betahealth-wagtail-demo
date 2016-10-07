@@ -7,8 +7,10 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 
+from exporter.models import BakeryModel
 
-class SimplePage(Page):
+
+class SimplePage(Page, BakeryModel):
     intro = models.CharField(max_length=255)
 
     body = StreamField([
@@ -43,3 +45,4 @@ class SimplePage(Page):
     ]
 
     api_fields = ['title', 'intro', 'body', 'aside']
+    bakery_views = ('pages.bakery_views.SimplePageStatic',)

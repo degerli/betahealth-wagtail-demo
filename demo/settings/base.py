@@ -26,9 +26,12 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    'home',
-    'search',
-    'pages',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -46,14 +49,13 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'storages',
 
-    'storages'
+    'home',
+    'search',
+    'pages',
+    'bakery',
+    'exporter',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +156,6 @@ WAGTAIL_SITE_NAME = "demo"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+
+BUILD_DIR = ''
